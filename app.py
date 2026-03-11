@@ -13,6 +13,11 @@ from user_routes import register_user_routes
 
 import user_routes
 app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello World!"
+    
 app = Flask(__name__, static_folder='static')
 app.secret_key = os.urandom(24)
 app.config['UPLOAD_FOLDER'] = "static/uploads"
@@ -27,10 +32,6 @@ os.makedirs('static/uploads/feedback', exist_ok=True)
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
-
-@app.route('/')
-def home():
-    return "Hello World!"
     
 # ========== DATABASE SAVE FUNCTIONS ==========
 def save_initial_diagnosis(user_id, image_file, crop, disease_data):
