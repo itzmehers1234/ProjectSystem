@@ -12,18 +12,16 @@ from user_routes import register_user_routes
 
 
 import user_routes
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return "Hello World!"
-    
 app = Flask(__name__, static_folder='static')
 app.secret_key = os.urandom(24)
 app.config['UPLOAD_FOLDER'] = "static/uploads"
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
 
+@app.route('/')
+def home():
+    return "Hello World!"
+    
 # Create uploads directory if not exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 # Create feedback uploads directory
