@@ -28,7 +28,10 @@ def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
-
+@app.route('/')
+def home():
+    return "Hello World!"
+    
 # ========== DATABASE SAVE FUNCTIONS ==========
 def save_initial_diagnosis(user_id, image_file, crop, disease_data):
     """Save initial AI diagnosis to database with image path"""
